@@ -26,17 +26,14 @@ export default function Header() {
 
           {/* Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              Dashboard
+            <a href="home" className="text-gray-300 hover:text-white transition-colors">
+              Home
             </a>
             <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              Invoices
+              About
             </a>
             <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              Clients
-            </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              Templates
+              Contact
             </a>
           </div>
 
