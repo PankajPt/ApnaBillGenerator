@@ -21,25 +21,32 @@ const ReceiptTemplate = () => {
     { label: "FP. ID", value: "" },
     { label: "Nozl No", value: "" },
     { label: "Fuel", value: "" },
-    { label: "Density", value: "" },
+    { label: "Density", value: "754.6kg/m3" },
     { label: "Preset", value: "NON PRESET" },
     { label: "Rate", value: "" },
     { label: "Sale", value: "" },
     { label: "Volume", value: "" }
   ];
 
+    // Calculate maximum label length
+  const maxLabelLength = Math.max(...rows.map(row => row.label.length));
+
+  // Pad labels so ':' aligns
+  const paddedRows = rows.map(row => {
+    const paddedLabel = row.label.padEnd(maxLabelLength, ' ');
+    return {
+      ...row,
+      paddedLabel
+    };
+  });
+
   return (
     <div 
-      className="relative bg-gray-300 p-0 overflow-hidden"
+      className="relative bg-white-900 p-0 overflow-hidden"
       style={{
         width: '57mm',
         height: '155mm',
         fontFamily: 'Consolas, monospace',
-        backgroundColor: '#e5e7eb',
-        backgroundImage: `
-          radial-gradient(circle at 10% 20%, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.05) 90%),
-          radial-gradient(circle at 90% 80%, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.05) 90%)
-        `,
       }}
     >
       {/* Main content container */}
@@ -56,35 +63,40 @@ const ReceiptTemplate = () => {
             style={{ maxWidth: '60%' }}
           />
         </div>
-
-        {/* 5mm padding below logo */}
-        <div className="pt-[5mm]"></div>
+          <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono" 
+          style={{ fontFamily: 'Consolas, monospace' }}>
+            <div>OM SAI PETROLEUM</div>
+            <div>HPCL DEALER</div>
+            <div>PLOT NO.14, SECTOR 21,</div>
+            <div>CBD BELAPUR</div>
+          </div>
 
         {/* Right side stripbar logo */}
-        <div className="absolute right-[5mm] top-0 bottom-0 w-4 flex justify-center">
+        <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
           <img 
-            src="/strip.png" 
+            src="/hdfc.png" 
             alt="Stripbar Logo"
             className="h-full object-contain"
           />
         </div>
 
         {/* Content with 10mm left padding */}
-        <div className="pl-[5mm] pr-[9mm] flex-grow text-xs">
-          <div className="space-y-1">
-            {rows.map((row, index) => (
-              <div key={index} className="flex">
-                <div className="flex-shrink-0">
-                  <span className="inline-block w-20 text-left">{row.label}</span>
-                  <span className="inline-block text-left">:</span>
-                </div>
-                <div className="flex-grow">
-                  <span>{row.value}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div
+          className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono"
+          style={{ whiteSpace: "pre-wrap" }}
+        >
+          {rows.map((row, index) => {
+            const maxLabelLength = Math.max(...rows.map(r => r.label.length));
+            const paddedLabel = row.label.padEnd(maxLabelLength, ' ');
+            return (
+              <div key={index}>{`${paddedLabel}: ${row.value}`}</div>
+            );
+          })}
         </div>
+        <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono" 
+          style={{ fontFamily: 'Consolas, monospace' }}>
+            <div>THANK YOU!! VISIT AGAIN!!</div>
+          </div>
       </div>
     </div>
   );
