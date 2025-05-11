@@ -32,27 +32,75 @@ const FuelBillPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleDownload = async (type) => {
-    const element = previewRef.current;
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true,
-      logging: true,
-      backgroundColor: null
-    });
+    const handleDownload = async (type) => {
+        const element = previewRef.current;
+        const scale = 3; // Higher scale = better quality
+        const mmToPx = 3.78;
+        const receiptWidthMM = includeTransaction ? 120 : 60;
+        const receiptHeightMM = 165;
+        const canvasWidth = receiptWidthMM * mmToPx;
+        const canvasHeight = receiptHeightMM * mmToPx;
 
-    if (type === 'png') {
-      const link = document.createElement('a');
-      link.download = `fuel-bill-${Date.now()}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    } else {
-      const pdf = new jsPDF('p', 'mm', [includeTransaction ? 120 : 60, 155]);
-      const imgData = canvas.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', 0, 0, includeTransaction ? 120 : 60, 155);
-      pdf.save(`fuel-bill-${Date.now()}.pdf`);
-    }
-  };
+        const canvas = await html2canvas(element, {
+            scale,
+            useCORS: true,
+            backgroundColor: '#bfbfbf', // Slightly off-white
+            width: canvasWidth,
+            height: canvasHeight
+        });
+
+        // Apply grayscale manually if needed
+        if (grayscale) {
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+            const gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+            data[i] = data[i + 1] = data[i + 2] = gray;
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.8);
+
+        if (type === 'png') {
+            const link = document.createElement('a');
+            link.download = `fuel-bill-${Date.now()}.jpg`;
+            link.href = imgData;
+            link.click();
+        } else {
+            const pdf = new jsPDF({
+            orientation: 'p',
+            unit: 'mm',
+            format: 'a4',
+            compress: true
+            });
+
+            const a4Width = 210;
+            const a4Height = 297;
+
+            // Calculate position to center receipt image on A4
+            const xOffset = (a4Width - receiptWidthMM) / 2;
+            const yOffset = (a4Height - receiptHeightMM) / 2;
+
+            // Add slightly off-white A4 background
+            pdf.setFillColor(245, 245, 245);
+            pdf.rect(0, 0, a4Width, a4Height, 'F');
+
+            pdf.addImage(
+            imgData,
+            'JPEG',
+            xOffset,
+            yOffset,
+            receiptWidthMM,
+            receiptHeightMM,
+            undefined,
+            'FAST'
+            );
+
+            pdf.save(`fuel-bill-${Date.now()}.pdf`);
+        }
+    };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -242,9 +290,15 @@ const FuelBillPage = () => {
         </div>
 
         <div 
-          ref={previewRef}
-          className={`flex gap-4 ${grayscale ? 'grayscale' : ''}`}
-        >
+            ref={previewRef}
+            className={`flex gap-4 ${grayscale ? 'grayscale' : ''}`}
+            style={{
+                width: '60mm',
+                height: '165mm',
+                overflow: 'hidden',
+            }}
+            >
+
           <ReceiptTemplate
             name={formData.stationName}
             address={formData.address}
