@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './Layout.jsx'
-import ReceiptTemplate from './templates/ReceiptTemplate.jsx'
+import Home from './pages/Home.jsx'
+import FuelBillPage from './pages/FuelBillPage.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,7 +14,8 @@ document.documentElement.classList.add(savedTheme);
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route path='home' element={<ReceiptTemplate />} />
+      <Route path='home' element={<Home />} />
+      <Route path='fuel-bill' element={<FuelBillPage />} />
     </Route>
   )
 )
