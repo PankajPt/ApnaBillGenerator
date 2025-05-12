@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      { "source": "/home", "destination": "/" },
+      { "source": "/contact", "destination": "/" },
+      { "source": "/fuel-bill", "destination": "/" },
+      { "source": "/about", "destination": "/" }
+    ]
+  }
