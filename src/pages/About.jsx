@@ -1,4 +1,5 @@
-// AboutPage.jsx
+import { AlertTriangle, ShieldAlert } from 'lucide-react';
+
 export const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
@@ -42,9 +43,22 @@ export const AboutPage = () => {
             <div className="flex flex-wrap gap-4">
               <span className="px-3 py-1 bg-blue-600 rounded-full text-sm">React 18</span>
               <span className="px-3 py-1 bg-blue-600 rounded-full text-sm">Tailwind CSS</span>
-              <span className="px-3 py-1 bg-blue-600 rounded-full text-sm">TypeScript</span>
-              <span className="px-3 py-1 bg-blue-600 rounded-full text-sm">Node.js</span>
             </div>
+          </div>
+
+          <div className="bg-red-800 p-6 rounded-lg shadow-lg mt-6">
+            <div className="flex items-center mb-4">
+              <ShieldAlert className="w-6 h-6 text-red-200 mr-2" />
+              <h2 className="text-xl font-semibold text-red-200">Responsible Use Disclaimer</h2>
+            </div>
+            <p className="text-red-100 leading-relaxed flex items-start">
+              <AlertTriangle className="w-5 h-5 mr-2 mt-1 text-yellow-200 flex-shrink-0" />
+              This Bill Management System is intended solely for legitimate and lawful business operations. 
+              Any misuse, including the generation of fraudulent or misleading invoices, is strictly prohibited and 
+              may lead to legal consequences. Users are responsible for ensuring all generated content complies 
+              with applicable laws and ethical standards. By using this tool, you agree to use it responsibly 
+              and at your own risk.
+            </p>
           </div>
         </div>
       </div>
