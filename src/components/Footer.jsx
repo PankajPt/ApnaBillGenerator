@@ -57,15 +57,15 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-center">
                 <EnvelopeIcon className="h-5 w-5 mr-2" />
-                support@invoicepro.com
+                pankajpatil4949@gmail.com
               </li>
               <li className="flex items-center">
                 <PhoneIcon className="h-5 w-5 mr-2" />
-                +1 (555) 123-4567
+                +91 (987) 654-3210
               </li>
               <li className="flex items-center">
                 <GlobeAltIcon className="h-5 w-5 mr-2" />
-                www.invoicepro.com
+                https://github.com/PankajPt/
               </li>
             </ul>
           </div>
