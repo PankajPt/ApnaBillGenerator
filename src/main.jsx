@@ -5,6 +5,8 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './Layout.jsx'
 import Home from './pages/Home.jsx'
 import FuelBillPage from './pages/FuelBillPage.jsx'
+import { AboutPage } from './pages/About.jsx'
+import { ContactPage } from './pages/Contact.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,8 +16,10 @@ document.documentElement.classList.add(savedTheme);
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route path='home' element={<Home />} />
+      <Route path='' element={<Home />} />
       <Route path='fuel-bill' element={<FuelBillPage />} />
+      <Route path='about' element={<AboutPage />} />
+      <Route path='contact' element={<ContactPage />} />
     </Route>
   )
 )

@@ -32,75 +32,61 @@ const FuelBillPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-    const handleDownload = async (type) => {
-        const element = previewRef.current;
-        const scale = 3; // Higher scale = better quality
-        const mmToPx = 3.78;
-        const receiptWidthMM = includeTransaction ? 120 : 60;
-        const receiptHeightMM = 165;
-        const canvasWidth = receiptWidthMM * mmToPx;
-        const canvasHeight = receiptHeightMM * mmToPx;
+  const handleDownload = async (type) => {
+    const element = previewRef.current;
+    const scale = 3;
+    const mmToPx = 3.78;
 
-        const canvas = await html2canvas(element, {
-            scale,
-            useCORS: true,
-            backgroundColor: '#bfbfbf', // Slightly off-white
-            width: canvasWidth,
-            height: canvasHeight
-        });
+    const canvas = await html2canvas(element, {
+      scale,
+      useCORS: true,
+      backgroundColor: null
+    });
 
-        // Apply grayscale manually if needed
-        if (grayscale) {
-            const ctx = canvas.getContext('2d');
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
-            for (let i = 0; i < data.length; i += 4) {
-            const gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
-            data[i] = data[i + 1] = data[i + 2] = gray;
-            }
-            ctx.putImageData(imageData, 0, 0);
-        }
+    // Apply grayscale manually if needed
+    if (grayscale) {
+      const ctx = canvas.getContext('2d');
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+        data[i] = data[i + 1] = data[i + 2] = gray;
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.8);
+    const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
-        if (type === 'png') {
-            const link = document.createElement('a');
-            link.download = `fuel-bill-${Date.now()}.jpg`;
-            link.href = imgData;
-            link.click();
-        } else {
-            const pdf = new jsPDF({
-            orientation: 'p',
-            unit: 'mm',
-            format: 'a4',
-            compress: true
-            });
+    if (type === 'png') {
+      const link = document.createElement('a');
+      link.download = `fuel-bill-${Date.now()}.jpg`;
+      link.href = imgData;
+      link.click();
+    } else {
+const pdfWidth = includeTransaction ? 135 : 60;
+const pdfHeight = 165;
 
-            const a4Width = 210;
-            const a4Height = 297;
+const pdf = new jsPDF({
+  orientation: 'p',
+  unit: 'mm',
+  format: [pdfWidth, pdfHeight]
+});
 
-            // Calculate position to center receipt image on A4
-            const xOffset = (a4Width - receiptWidthMM) / 2;
-            const yOffset = (a4Height - receiptHeightMM) / 2;
+pdf.addImage(
+  imgData,
+  'JPEG',
+  0,
+  0,
+  pdfWidth,
+  pdfHeight,
+  undefined,
+  'FAST'
+);
 
-            // Add slightly off-white A4 background
-            pdf.setFillColor(245, 245, 245);
-            pdf.rect(0, 0, a4Width, a4Height, 'F');
+      pdf.save(`fuel-bill-${Date.now()}.pdf`);
+    }
+  };
 
-            pdf.addImage(
-            imgData,
-            'JPEG',
-            xOffset,
-            yOffset,
-            receiptWidthMM,
-            receiptHeightMM,
-            undefined,
-            'FAST'
-            );
-
-            pdf.save(`fuel-bill-${Date.now()}.pdf`);
-        }
-    };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -290,40 +276,64 @@ const FuelBillPage = () => {
         </div>
 
         <div 
-            ref={previewRef}
-            className={`flex gap-4 ${grayscale ? 'grayscale' : ''}`}
-            style={{
-                width: '60mm',
-                height: '165mm',
-                overflow: 'hidden',
-            }}
-            >
+          ref={previewRef}
+          className={`flex ${grayscale ? 'grayscale' : ''}`}
+          style={{
+            width: includeTransaction ? '135mm' : '60mm',
+            height: '165mm',
+            gap: '5mm',
+            padding: '0mm',
+            backgroundColor: '#fff'
+          }}
+        >
+            <div style={{
+              width: includeTransaction ? 'calc(50% - 5.5mm)' : '100%',
+              paddingRight: includeTransaction ? '10mm' : 0,
+              boxSizing: 'border-box',
+            }}>
+              <ReceiptTemplate
+                name={formData.stationName}
+                address={formData.address}
+                dateTime={formData.dateTime}
+                vehicleNum={formData.vehicleNum}
+                mobNum={formData.mobNum}
+                FPID={formData.FPID}
+                NOZZID={formData.NOZZID}
+                fuel={formData.fuel}
+                density={formData.density}
+                rate={formData.rate}
+                sale={formData.sale}
+                logo={formData.station}
+              />
+            </div>
 
-          <ReceiptTemplate
-            name={formData.stationName}
-            address={formData.address}
-            dateTime={formData.dateTime}
-            vehicleNum={formData.vehicleNum}
-            mobNum={formData.mobNum}
-            FPID={formData.FPID}
-            NOZZID={formData.NOZZID}
-            fuel={formData.fuel}
-            density={formData.density}
-            rate={formData.rate}
-            sale={formData.sale}
-            logo={formData.station}
-          />
+            {includeTransaction && (
+              <div style={{
+                width: '1px',
+                backgroundColor: '#000',
+                height: '100%',
+              }} />
+            )}
+
+              {includeTransaction && (
+              <div style={{
+                width: 'calc(50% - 5.5mm)',
+                paddingLeft: '2mm',
+                boxSizing: 'border-box',
+              }}>
           
-          {includeTransaction && (
-            <TransactionTemplate
-              name={formData.stationName}
-              dateTime={formData.dateTime}
-              cardNumber={formData.cardNumber}
-              amount={(formData.sale / 1).toLocaleString('en-IN')}
-              clientBank={formData.clientBank}
-              address={formData.address}
-            />
-          )}
+                {includeTransaction && (
+                  <TransactionTemplate
+                    name={formData.stationName}
+                    dateTime={formData.dateTime}
+                    cardNumber={formData.cardNumber}
+                    amount={(formData.sale / 1).toLocaleString('en-IN')}
+                    clientBank={formData.clientBank}
+                    address={formData.address}
+                  />
+                 )}
+              </div>
+              )}
         </div>
 
         <div className="mt-6 flex gap-4">
