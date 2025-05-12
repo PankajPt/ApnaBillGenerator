@@ -90,8 +90,8 @@ export const ContactPage = () => {
         <div className="mt-8 bg-gray-800 rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Support Channels</h2>
           <div className="space-y-2 text-gray-300">
-            <p>📧 Email: support@billmanager.com</p>
-            <p>📞 Helpline: +1 (555) 123-4567</p>
+            <p>📧 Email: pankajpatil4949@gmail.com</p>
+            <p>📞 Helpline: +91 (987) 654-3210</p>
             <p>🕒 Support Hours: Mon-Fri 9AM-5PM EST</p>
           </div>
         </div>
