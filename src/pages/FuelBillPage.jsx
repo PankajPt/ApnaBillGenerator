@@ -29,6 +29,7 @@ const FuelBillPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'cardNumber' && !/^\d{0,4}$/.test(value)) return;
+    if (name === 'mobNum' && !/^\d{0,10}$/.test(value)) return;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -227,6 +228,30 @@ pdf.addImage(
               type="number"
               name="sale"
               value={formData.sale}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Vehicle Number</label>
+            <input
+              type="text"
+              name="vehicleNum"
+              value={formData.vehicleNum}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Mobile Number</label>
+            <input
+              type="number"
+              name="mobNum"
+              value={formData.mobNum}
               onChange={handleInputChange}
               className="w-full p-2 border rounded"
               required
