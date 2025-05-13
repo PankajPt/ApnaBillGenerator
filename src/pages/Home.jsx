@@ -76,7 +76,7 @@ const Home = () => {
                 Track payment history and generate annual compensation reports.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Process Salary Payment
+                Coming Soon...
               </button>
             </div>
           )}
@@ -92,7 +92,7 @@ const Home = () => {
                 maintenance charges, and tax-compliant documentation for accounting purposes.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Create Rent Receipt
+                Coming Soon...
               </button>
             </div>
           )}
@@ -108,7 +108,7 @@ const Home = () => {
                 with breakdowns of service taxes and additional charges.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Generate Internet Invoice
+                Coming Soon...
               </button>
             </div>
           )}
@@ -124,7 +124,7 @@ const Home = () => {
                 itemized costs for repairs, parts replacement, and labor charges.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Create Maintenance Bill
+                Coming Soon...
               </button>
             </div>
           )}
@@ -140,7 +140,7 @@ const Home = () => {
                 with detailed breakdowns of units consumed, fixed charges, and government taxes.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Process Electricity Bill
+                Coming Soon...
               </button>
             </div>
           )}
@@ -156,7 +156,7 @@ const Home = () => {
                 with itemized call charges, data usage, and value-added services.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Generate Telephone Bill
+                Coming Soon...
               </button>
             </div>
           )}
@@ -172,7 +172,7 @@ const Home = () => {
                 bills with tax breakdowns.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Create Hotel Bill
+                Coming Soon...
               </button>
             </div>
           )}
@@ -188,7 +188,7 @@ const Home = () => {
                 with automated calculations.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Create Insurance Bill
+                Coming Soon...
               </button>
             </div>
           )}
