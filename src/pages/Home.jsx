@@ -205,7 +205,7 @@ const Home = () => {
                 Configure tax rules, approval workflows, and automated reminders for new bill types.
               </p>
               <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
-                Configure New Bill Type
+                Feature Coming Soon...
               </button>
             </div>
           )}
