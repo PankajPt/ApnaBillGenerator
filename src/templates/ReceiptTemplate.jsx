@@ -31,7 +31,7 @@ const ReceiptTemplate = ({
     };
 
     const date = new Date(dateTime);
-    const getMonth = date.toLocaleString('default', { month: 'long' });
+    const getMonth = date.toLocaleString('default', { month: 'long' }).slice(0,3);
     const bill = getMonth + generateDigitId(6).padStart(7, "-") + "-ORGNL";
     const transId = generateDigitId(10).padStart(16, "0");
 
