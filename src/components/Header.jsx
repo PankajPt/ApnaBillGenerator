@@ -28,15 +28,20 @@ export default function Header() {
           </Link>
           {/* Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link to="/">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                Home
+              </a>
+            </Link>
             <Link to="/about">
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              About
-            </a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                About
+              </a>
             </Link>
             <Link to="/contact">
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
-              Contact
-            </a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                Contact
+              </a>
             </Link>
           </div>
 
