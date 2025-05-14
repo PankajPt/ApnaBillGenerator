@@ -31,7 +31,7 @@ ApnaBillGenerator is a responsive, modern web application built using **React** 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/apnabillgenerator.git
+git clone https://github.com/PankajPt/ApnaBillGenerator.git
 cd apnabillgenerator
 ```
 
