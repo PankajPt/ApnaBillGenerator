@@ -77,6 +77,7 @@ apnabillgenerator/
 ├── postcss.config.js
 ├── tailwind.config.js
 ├── vite.config.js
+├── vercel.json
 ```
 
 ## ⚙️ Scripts
@@ -90,15 +91,31 @@ npm run build     # Build for production
 
 ```json
 "dependencies": {
-  "react": "^18.x.x",
-  "react-dom": "^18.x.x"
+  "@heroicons/react": "^2.2.0",
+  "framer-motion": "^12.10.4",
+  "heroicons": "^2.2.0",
+  "html2canvas": "^1.4.1",
+  "jspdf": "^3.0.1",
+  "lucide-react": "^0.510.0",
+  "react": "^19.1.0",
+  "react-datepicker": "^8.3.0",
+  "react-dom": "^19.1.0",
+  "react-icons": "^5.5.0",
+  "react-router-dom": "^7.6.0"
 },
 "devDependencies": {
-  "vite": "^4.x.x",
-  "tailwindcss": "^3.x.x",
-  "postcss": "^8.x.x",
-  "autoprefixer": "^10.x.x",
-  "eslint": "^8.x.x"
+  "@eslint/js": "^9.25.0",
+  "@types/react": "^19.1.2",
+  "@types/react-dom": "^19.1.2",
+  "@vitejs/plugin-react": "^4.4.1",
+  "autoprefixer": "^10.4.21",
+  "eslint": "^9.25.0",
+  "eslint-plugin-react-hooks": "^5.2.0",
+  "eslint-plugin-react-refresh": "^0.4.19",
+  "globals": "^16.0.0",
+  "postcss": "^8.5.3",
+  "tailwindcss": "^3.4.17",
+  "vite": "^6.3.5"
 }
 ```
 ## 📦 Build
@@ -109,7 +126,8 @@ npm run build
 
 ## 📄 License
 
-- This project is licensed under the MIT License.
+This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.
+
 
 ## 👨‍💻 Author
 
