@@ -19,7 +19,8 @@ const FuelBillPage = () => {
     rate: '103.65',
     sale: '4500',
     station: 'hp',
-    cardNumber: ''
+    cardNumber: '',
+    strip: ''
   });
 
   const [includeTransaction, setIncludeTransaction] = useState(false);
@@ -32,6 +33,20 @@ const FuelBillPage = () => {
     if (name === 'mobNum' && !/^\d{0,10}$/.test(value)) return;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+  function formatForDateTimeInput(ms) {
+    const date = new Date(ms);
+    const pad = (n) => String(n).padStart(2, '0');
+  
+    const yyyy = date.getFullYear();
+    const MM = pad(date.getMonth() + 1);
+    const dd = pad(date.getDate());
+    const HH = pad(date.getHours());
+    const mm = pad(date.getMinutes());
+  
+    return `${yyyy}-${MM}-${dd}T${HH}:${mm}`;
+  }
+  
 
   const handleDownload = async (type) => {
     const element = previewRef.current;
@@ -124,7 +139,7 @@ pdf.addImage(
             <label className="block text-sm font-medium">Date & Time</label>
             <input
               type="datetime-local"
-              value={new Date(formData.dateTime).toISOString().slice(0, 16)}
+              value={formatForDateTimeInput(formData.dateTime)}
               onChange={(e) => {
                 const date = new Date(e.target.value);
                 setFormData(prev => ({ ...prev, dateTime: date.getTime() }));
@@ -145,6 +160,20 @@ pdf.addImage(
               <option value="hp">Hindustan Petroleum</option>
               <option value="bp">Bharat Petroleum</option>
               <option value="io">Indian Oil</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Vertical logo strip</label>
+            <select
+              name="strip"
+              value={formData.strip}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+            >
+              <option value="">None</option>
+              <option value="HDFC">HDFC</option>
+              <option value="Axis">AXIS</option>
             </select>
           </div>
 
@@ -329,6 +358,7 @@ pdf.addImage(
                 rate={formData.rate}
                 sale={formData.sale}
                 logo={formData.station}
+                strip={formData.strip}
               />
             </div>
 
@@ -355,6 +385,7 @@ pdf.addImage(
                     amount={(formData.sale / 1).toLocaleString('en-IN')}
                     clientBank={formData.clientBank}
                     address={formData.address}
+                    strip={formData.strip}
                   />
                  )}
               </div>

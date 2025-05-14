@@ -21,7 +21,8 @@ const TransactionTemplate = ({
   cardNumber = "8747",
   amount = "4,500.41",
   clientBank = "ICICI Bank",
-  address = "PLOT NO.14, SECTOR 21, CBD BELAPUR"
+  address = "PLOT NO.14, SECTOR 21, CBD BELAPUR",
+  strip = ""
 }) => {
   const [transactionId, setTransactionId] = useState('');
   const [orderId, setOrderId] = useState('');
@@ -32,6 +33,11 @@ const TransactionTemplate = ({
   const [TID, setTID] = useState('');
   const [rrn, setRRN] = useState('');
   const [authCode, setAuthCode] = useState('');
+  
+  const selectStrip = {
+    HDFC: '/hdfc.png',
+    Axis: '/axis.png'
+  }
 
   const date = new Date(dateTime);
   const year = date.getFullYear();
@@ -122,13 +128,16 @@ const TransactionTemplate = ({
         <div className="relative z-10 px-[3mm] text-xs font-bold">Payment Details</div>
 
         {/* Stripbar logo */}
-        <div className="absolute right-[2mm] top-0 bottom-0 w-4 flex justify-center">
+        { strip && selectStrip[strip] && (
+          <div className="absolute right-[2mm] top-0 bottom-0 w-4 flex justify-center">
           <img
-            src="/hdfc.png"
+            src={selectStrip[strip]}
             alt="Stripbar Logo"
             className="h-full object-contain"
           />
         </div>
+        )}
+        
 
         {/* Payment Details */}
         <div className="relative z-10 px-[4mm] text-xs right-[1.5mm]">

@@ -12,7 +12,8 @@ const ReceiptTemplate = ({
   density = "754.6kg/m3",
   rate = "103.65",
   sale = "4500",
-  logo = "hp"
+  logo = "hp",
+  strip = ""
 }) => {
   const [billNo, setBillNo] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -22,6 +23,11 @@ const ReceiptTemplate = ({
     bp: '/bp.png',
     io: '/io.png'
   };
+
+  const selectStrip = {
+    HDFC: '/hdfc.png',
+    Axis: '/axis.png'
+  }
 
   useEffect(() => {
     const generateDigitId = (length) => {
@@ -100,14 +106,15 @@ const ReceiptTemplate = ({
           <div>{name}</div>
           <div>{address.replace(/,/g, ', ').replace(/\s+/g, ' ')}</div>
         </div>
-
-        <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
+        { strip && selectStrip[strip] && (
+          <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
           <img
-            src="/hdfc.png"
+            src={selectStrip[strip]}
             alt="Stripbar Logo"
             className="h-full object-contain"
           />
         </div>
+        )}
 
         <div
           className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono"
