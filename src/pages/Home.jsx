@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   FaGasPump, FaHotel, FaShieldAlt, FaPlus,
-  FaUserTie, FaHome, FaWifi, FaTools, FaBolt, FaPhoneAlt 
+  FaUserTie, FaHome, FaWifi, FaTools, FaBolt, FaPhoneAlt, FaEye 
 } from 'react-icons/fa';
 import { db, doc, getDoc, setDoc, updateDoc, increment } from '../services/firebaseConfig.js';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('fuel');
   const [visitCount, setVisitCount] = useState(0);
+  const [pulse, setPulse] = useState(false);
   const navigate = useNavigate();
 
   const [tabs] = useState([
@@ -40,6 +41,8 @@ const Home = () => {
 
         const updatedSnap = await getDoc(counterRef);
         setVisitCount(updatedSnap.data().count);
+        setPulse(true);
+        setTimeout(() => setPulse(false), 1000);
       } catch (error) {
         console.error("Error updating visit count:", error);
       }
@@ -51,8 +54,15 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 relative">
       {/* Visit Counter */}
-      <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full shadow-md text-sm">
-        Visits: {visitCount}
+      {/* Modern Visit Counter */}
+      <div className={`absolute top-4 right-4 flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 backdrop-blur-md bg-opacity-90 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-300 ${
+        pulse ? 'animate-pulse' : ''
+      }`}>
+        <FaEye className="text-sm opacity-90" />
+        <span className="text-sm font-medium">
+          <span className="text-xs opacity-90 mr-1">Visits</span>
+          <span className="font-bold">{visitCount}</span>
+        </span>
       </div>
 
       <div className="max-w-6xl mx-auto">
