@@ -6,7 +6,7 @@ const firebaseConfig = {
   authDomain: "apnabillgenerator.firebaseapp.com",
   databaseURL: "https://apnabillgenerator-default-rtdb.firebaseio.com",
   projectId: "apnabillgenerator",
-  storageBucket: "apnabillgenerator.firebasestorage.app",
+  storageBucket: "apnabillgenerator.appspot.com",
   messagingSenderId: "33291715220",
   appId: "1:33291715220:web:9b01bb7d0f6fc26d75ea81",
   measurementId: "G-690WJRQWLL"
