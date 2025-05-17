@@ -84,53 +84,61 @@ const ReceiptTemplate = ({
   }));
 
   return (
-    <div className="relative bg-white-900 p-0 overflow-hidden"
-      style={{
-        width: '60mm',
-        height: '165mm',
-        fontFamily: 'Consolas, monospace',
-      }}>
-      <div className="relative h-full p-0 flex flex-col">
-        <div className="pt-[5mm]"></div>
+  <div
+    className="relative p-0 overflow-hidden"
+    style={{
+      width: '60mm',
+      height: '165mm',
+      fontFamily: 'Consolas, monospace',
+      backgroundImage: `url('/bg.png')`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center center',
+    }}
+  >
+    <div className="relative h-full p-0 flex flex-col">
+      <div className="pt-[5mm]"></div>
 
-        <div className="flex justify-center">
-          <img
-            src={selectLogo[logo]}
-            alt="Company Logo"
-            className="h-15 object-contain"
-            style={{ maxWidth: '45%' }}
-          />
-        </div>
+      <div className="flex justify-center">
+        <img
+          src={selectLogo[logo]}
+          alt="Company Logo"
+          className="h-15 object-contain"
+          style={{ maxWidth: '45%' }}
+        />
+      </div>
 
-        <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
-          <div>{name}</div>
-          <div>{address.replace(/,/g, ', ').replace(/\s+/g, ' ')}</div>
-        </div>
-        { strip && selectStrip[strip] && (
-          <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
+      <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
+        <div>{name}</div>
+        <div>{address.replace(/,/g, ', ').replace(/\s+/g, ' ')}</div>
+      </div>
+
+      {strip && selectStrip[strip] && (
+        <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
           <img
             src={selectStrip[strip]}
             alt="Stripbar Logo"
             className="h-full object-contain"
           />
         </div>
-        )}
+      )}
 
-        <div
-          className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono"
-          style={{ whiteSpace: "pre-wrap" }}
-        >
-          {paddedRows.map((row, index) => (
-            <div key={index}>{`${row.paddedLabel}: ${row.value}`}</div>
-          ))}
-        </div>
+      <div
+        className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono"
+        style={{ whiteSpace: "pre-wrap" }}
+      >
+        {paddedRows.map((row, index) => (
+          <div key={index}>{`${row.paddedLabel}: ${row.value}`}</div>
+        ))}
+      </div>
 
-        <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
-          <div>THANK YOU!! VISIT AGAIN!!</div>
-        </div>
+      <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
+        <div>THANK YOU!! VISIT AGAIN!!</div>
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default ReceiptTemplate;

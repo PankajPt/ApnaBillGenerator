@@ -93,6 +93,10 @@ const TransactionTemplate = ({
         width: '60mm',
         height: '165mm',
         fontFamily: 'Roboto, sans-serif',
+        backgroundImage: `url('/bg.png')`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
       }}
     >
       <div className="relative h-full p-0 flex flex-col">
