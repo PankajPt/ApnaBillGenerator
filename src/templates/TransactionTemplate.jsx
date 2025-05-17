@@ -102,7 +102,7 @@ const TransactionTemplate = ({
       <div className="relative h-full p-0 flex flex-col">
 
         {/* Logo section */}
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-[5mm]">
           <img
             src="/paytm.png"
             alt="Company Logo"
