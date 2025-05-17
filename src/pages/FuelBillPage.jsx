@@ -78,7 +78,7 @@ const FuelBillPage = () => {
 
       if (type === 'png') {
         const link = document.createElement('a');
-        link.download = `fuel-bill-${Date.now()}.jpg`;
+        link.download = `fuel-bill-${formatForDateTimeInput(formData.dateTime)}.jpg`;
         link.href = imgData;
         link.click();
       } else {
