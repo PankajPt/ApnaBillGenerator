@@ -105,6 +105,151 @@ const Home = () => {
               </button>
             </div>
           )}
+
+          {activeTab === 'driver' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaUserTie className="text-blue-400" />
+                <span>Driver Salary Processing</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage driver payroll, overtime calculations, and generate salary slips with tax deductions. 
+                Track payment history and generate annual compensation reports.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'rent' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaHome className="text-blue-400" />
+                <span>Rent Receipt Management</span>
+              </h2>
+              <p className="text-gray-300">
+                Generate professional rent receipts with automated calculations for security deposits, 
+                maintenance charges, and tax-compliant documentation for accounting purposes.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'internet' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaWifi className="text-blue-400" />
+                <span>Internet Service Invoices</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage ISP subscriptions, track bandwidth usage, and generate detailed internet service invoices 
+                with breakdowns of service taxes and additional charges.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'maintenance' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaTools className="text-blue-400" />
+                <span>Maintenance Bills</span>
+              </h2>
+              <p className="text-gray-300">
+                Record and track property or vehicle maintenance expenses. Generate service reports with 
+                itemized costs for repairs, parts replacement, and labor charges.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'electricity' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaBolt className="text-blue-400" />
+                <span>Electricity Bills</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage utility payments, track energy consumption patterns, and generate electricity bills 
+                with detailed breakdowns of units consumed, fixed charges, and government taxes.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'telephone' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaPhoneAlt className="text-blue-400" />
+                <span>Telephone Bills</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage mobile and landline expenses, analyze call logs, and generate detailed telephone bills 
+                with itemized call charges, data usage, and value-added services.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+           {activeTab === 'hotel' && (
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold flex items-center space-x-2">
+                <FaHotel className="text-blue-400" />
+                <span>Hotel Accommodation</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage hotel stays, room charges, and related expenses. Generate detailed accommodation 
+                bills with tax breakdowns.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+          {activeTab === 'insurance' && (
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold flex items-center space-x-2">
+                <FaShieldAlt className="text-blue-400" />
+                <span>Insurance Policies</span>
+              </h2>
+              <p className="text-gray-300">
+                Manage insurance policies, premium payments, and generate insurance-related documents 
+                with automated calculations.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Coming Soon...
+              </button>
+            </div>
+          )}
+
+
+          {activeTab === 'add' && (
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-semibold flex items-center space-x-2">
+                <FaPlus className="text-blue-400" />
+                <span>Add New Bill Type</span>
+              </h2>
+              <p className="text-gray-300">
+                Create custom bill templates and categories to expand your billing capabilities. 
+                Configure tax rules, approval workflows, and automated reminders for new bill types.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                Feature Coming Soon...
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
