@@ -25,7 +25,7 @@ const FuelBillPage = () => {
   });
 
   const [includeTransaction, setIncludeTransaction] = useState(false);
-  const [grayscale, setGrayscale] = useState(false);
+  const [grayscale, setGrayscale] = useState(true);
   const previewRef = useRef(null);
 
   // Handlers
@@ -246,7 +246,7 @@ const FuelBillPage = () => {
 
           {/* Vehicle & Payment */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-700">Vehicle Information</h3>
+            <h3 className="text-lg font-medium text-gray-700">Additional Details</h3>
             
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-600">Vehicle Number</label>
@@ -274,12 +274,6 @@ const FuelBillPage = () => {
                 placeholder="10-digit mobile number"
               />
             </div>
-          </div>
-
-          {/* Additional Details */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-700">Additional Details</h3>
-            
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-600">FP.ID</label>
               <input
@@ -303,7 +297,11 @@ const FuelBillPage = () => {
                 required
               />
             </div>
+          </div>
 
+          {/* Additional Details */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium text-gray-700">------------------------------------</h3>
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-600">Density</label>
               <input
@@ -345,21 +343,6 @@ const FuelBillPage = () => {
             </div>
           </div>
         </div>
-
-        <div className="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-4 justify-between items-center">
-          <div className="flex items-center">
-            <input
-              id="include-transaction"
-              type="checkbox"
-              checked={includeTransaction}
-              onChange={(e) => setIncludeTransaction(e.target.checked)}
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-            />
-            <label htmlFor="include-transaction" className="ml-2 text-sm font-medium text-gray-700">
-              Include Transaction Receipt
-            </label>
-          </div>
-        </div>
       </div>
 
       {/* Preview Section */}
@@ -377,8 +360,18 @@ const FuelBillPage = () => {
               onChange={(e) => setGrayscale(e.target.checked)}
               className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             />
-            <label htmlFor="grayscale-toggle" className="ml-2 text-sm font-medium text-gray-700">
+            <label htmlFor="grayscale-toggle" className="ml-2 text-sm font-medium text-gray-700 px-[2mm]">
               Scan Effect
+            </label>
+            <input
+              id="include-transaction"
+              type="checkbox"
+              checked={includeTransaction}
+              onChange={(e) => setIncludeTransaction(e.target.checked)}
+              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            />
+            <label htmlFor="include-transaction" className="ml-2 text-sm font-medium text-gray-700">
+              Include Transaction Receipt
             </label>
           </div>
         </div>
