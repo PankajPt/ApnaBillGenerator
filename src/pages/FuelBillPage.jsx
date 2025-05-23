@@ -350,7 +350,6 @@ const FuelBillPage = () => {
         <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
           <div>
             <h2 className="text-2xl font-semibold text-gray-800">Live Preview</h2>
-            <p className="text-sm text-gray-500">Preview your receipt before downloading</p>
           </div>
           <div className="flex items-center">
             <input
