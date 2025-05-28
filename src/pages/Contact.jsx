@@ -92,7 +92,7 @@ export const ContactPage = () => {
           <div className="space-y-2 text-gray-300">
             <p>📧 Email: pankajpatil4949@gmail.com</p>
             <p>📞 Helpline: +91 (987) 654-3210</p>
-            <p>🕒 Support Hours: Mon-Fri 9AM-5PM EST</p>
+            <p>🕒 Support Hours: Mon-Fri 9AM-5PM IST</p>
           </div>
         </div>
       </div>
