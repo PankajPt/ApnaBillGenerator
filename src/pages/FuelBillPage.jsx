@@ -45,7 +45,6 @@ const FuelBillPage = () => {
     const dd = pad(date.getDate());
     const HH = pad(date.getHours());
     const mm = pad(date.getMinutes());
-  
     return `${yyyy}-${MM}-${dd}T${HH}:${mm}`;
   };
 
@@ -162,8 +161,10 @@ const FuelBillPage = () => {
               <input
                 type="datetime-local"
                 value={formatForDateTimeInput(formData.dateTime)}
+                step="60"
                 onChange={(e) => {
                   const date = new Date(e.target.value);
+                  date.setSeconds(Math.floor(Math.random() * 60));
                   setFormData(prev => ({ ...prev, dateTime: date.getTime() }));
                 }}
                 className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
