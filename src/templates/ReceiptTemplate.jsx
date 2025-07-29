@@ -13,7 +13,8 @@ const ReceiptTemplate = ({
   rate = "103.65",
   sale = "4500",
   logo = "hp",
-  strip = ""
+  strip = "",
+  gstin = ""
 }) => {
   const [billNo, setBillNo] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -111,6 +112,8 @@ const ReceiptTemplate = ({
       <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
         <div>{name}</div>
         <div>{address.replace(/,/g, ', ').replace(/\s+/g, ' ')}</div>
+        {gstin && (<div>GSTIN {gstin}</div>
+        )}
       </div>
 
       {strip && selectStrip[strip] && (

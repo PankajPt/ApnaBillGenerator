@@ -21,7 +21,8 @@ const FuelBillPage = () => {
     sale: '4500',
     station: 'hp',
     cardNumber: '',
-    strip: ''
+    strip: '',
+    gstin: ''
   });
 
   const [includeTransaction, setIncludeTransaction] = useState(false);
@@ -33,6 +34,12 @@ const FuelBillPage = () => {
     const { name, value } = e.target;
     if (name === 'cardNumber' && !/^\d{0,4}$/.test(value)) return;
     if (name === 'mobNum' && !/^\d{0,10}$/.test(value)) return;
+    if (name === 'gstin') {
+      const upperValue = value.toUpperCase();
+      if (!/^[A-Z0-9]{0,15}$/.test(upperValue)) return;
+      setFormData(prev => ({ ...prev, [name]: upperValue }));
+      return;
+    }
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -342,6 +349,18 @@ const FuelBillPage = () => {
                 <option value="Axis">AXIS</option>
               </select>
             </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-600">GST Number</label>
+              <input
+                type="text"
+                name="gstin"
+                value={formData.gstin}
+                onChange={handleInputChange}
+                className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                required
+                placeholder="GSTIN (e.g. 27ABCDE1234F2Z5)"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -407,6 +426,7 @@ const FuelBillPage = () => {
                 sale={formData.sale}
                 logo={formData.station}
                 strip={formData.strip}
+                gstin={formData.gstin}
               />
             </div>
 
