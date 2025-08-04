@@ -109,13 +109,12 @@ const ReceiptTemplate = ({
         />
       </div>
 
-      <div className="relative z-10 px-[5mm] pt-[5mm] text-xs font-mono">
+      {/* <div className="flex justify-center text-xl font-mono">Welcomes You</div> */}
+      <div className="relative z-10 px-[5mm] pt-[2mm] text-xs font-mono text-center">
         <div>{name}</div>
         <div>{address.replace(/,/g, ', ').replace(/\s+/g, ' ')}</div>
-        {gstin && (<div>GSTIN {gstin}</div>
-        )}
+        {gstin && <div>GSTIN {gstin}</div>}
       </div>
-
       {strip && selectStrip[strip] && (
         <div className="absolute right-[3mm] top-0 bottom-0 w-4 flex justify-center">
           <img
